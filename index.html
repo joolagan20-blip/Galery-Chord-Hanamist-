@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08235f">
+<title>Hanamist Chord Gallery</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  min-height:100vh;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#071d50;
+  background:
+    radial-gradient(circle at 15% 10%,rgba(42,142,255,.22),transparent 25%),
+    radial-gradient(circle at 90% 75%,rgba(0,113,255,.18),transparent 30%),
+    linear-gradient(145deg,#eaf4ff,#fff 48%,#e7f2ff);
+  overflow-x:hidden;
+}
+body:before,body:after{
+  content:"♪  ♫  ♪";
+  position:fixed;
+  z-index:-1;
+  font-size:80px;
+  font-weight:900;
+  color:rgba(22,101,220,.07);
+  letter-spacing:25px;
+  transform:rotate(-15deg);
+}
+body:before{left:-80px;top:35%}
+body:after{right:-80px;bottom:18%;transform:rotate(12deg)}
+
+.page{
+  width:min(100%,980px);
+  margin:auto;
+  padding:18px 14px 30px;
+}
+.hero{
+  position:relative;
+  overflow:hidden;
+  border-radius:28px;
+  padding:34px 24px 30px;
+  text-align:center;
+  color:white;
+  background:
+    radial-gradient(circle at 15% 25%,rgba(77,185,255,.28),transparent 25%),
+    radial-gradient(circle at 85% 15%,rgba(255,214,74,.18),transparent 20%),
+    linear-gradient(135deg,#06266e,#0a3d9b 55%,#0c65c9);
+  box-shadow:0 18px 45px rgba(5,48,116,.24);
+}
+.hero:before,.hero:after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.14);
+}
+.hero:before{width:420px;height:420px;left:-180px;top:-280px}
+.hero:after{width:360px;height:360px;right:-150px;bottom:-270px}
+.crown{font-size:38px;line-height:1;margin-bottom:4px}
+.brand{
+  position:relative;
+  margin:0;
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:clamp(44px,9vw,82px);
+  font-style:italic;
+  font-weight:900;
+  letter-spacing:-4px;
+  text-shadow:0 5px 0 #031642,0 10px 24px rgba(0,0,0,.22);
+}
+.brand span{color:#ffd42f}
+.subtitle{
+  position:relative;
+  display:inline-block;
+  margin-top:2px;
+  padding:8px 22px;
+  border-radius:999px;
+  background:rgba(255,255,255,.13);
+  border:1px solid rgba(255,255,255,.2);
+  backdrop-filter:blur(5px);
+  font-size:clamp(20px,4vw,34px);
+  font-weight:800;
+}
+.music{position:absolute;font-size:46px;opacity:.8}
+.m1{left:7%;top:24%} .m2{right:8%;top:18%} .m3{right:12%;bottom:12%}
+
+.card{
+  margin-top:18px;
+  border-radius:28px;
+  background:rgba(255,255,255,.9);
+  border:1px solid rgba(18,87,176,.12);
+  box-shadow:0 15px 40px rgba(14,67,133,.14);
+  padding:28px 18px;
+  text-align:center;
+}
+.title{
+  margin:0;
+  font-size:clamp(27px,5vw,44px);
+  line-height:1.08;
+  font-weight:900;
+  color:#071d50;
+}
+.title .blue{color:#0869e9}
+.desc{
+  max-width:700px;
+  margin:10px auto 20px;
+  color:#52627b;
+  font-size:clamp(15px,2.8vw,19px);
+  line-height:1.5;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:13px;
+  min-width:min(92%,430px);
+  padding:17px 28px;
+  border-radius:999px;
+  color:#fff;
+  text-decoration:none;
+  font-size:clamp(20px,4vw,28px);
+  font-weight:900;
+  background:linear-gradient(135deg,#0573ff,#0754d8);
+  box-shadow:0 12px 28px rgba(0,91,232,.3),inset 0 1px 0 rgba(255,255,255,.35);
+  transition:.2s ease;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 16px 32px rgba(0,91,232,.38)}
+.btn:active{transform:scale(.98)}
+.hand{font-size:30px}
+.qr-section{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(270px,430px);
+  gap:26px;
+  align-items:center;
+}
+.qr-copy{text-align:left;padding:10px 12px}
+.qr-copy h2{margin:0 0 8px;font-size:clamp(26px,4.5vw,40px)}
+.qr-copy h2 span{color:#0869e9}
+.qr-copy p{font-size:17px;line-height:1.55;color:#58667d}
+.badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.badge{
+  padding:9px 12px;border-radius:14px;background:#f1f6ff;
+  color:#164b9c;font-weight:800;font-size:13px;
+  border:1px solid #dce9ff;
+}
+.qr-box{
+  background:#fff;
+  border-radius:26px;
+  padding:18px;
+  box-shadow:0 16px 36px rgba(19,65,125,.18);
+  border:1px solid #e4ecf8;
+}
+.qr-box img{
+  display:block;width:100%;height:auto;aspect-ratio:1/1;
+  object-fit:contain;background:#fff;
+}
+.scan-note{
+  margin:12px 0 0;
+  font-size:14px;
+  font-weight:800;
+  color:#41536e;
+}
+.footer{
+  margin-top:18px;padding:18px;text-align:center;
+  color:#6b7890;font-size:14px
+}
+.footer strong{color:#123f91}
+
+@media(max-width:720px){
+  .page{padding:10px 9px 22px}
+  .hero{border-radius:22px;padding:27px 12px 25px}
+  .card{border-radius:22px;padding:22px 13px}
+  .qr-section{grid-template-columns:1fr;gap:8px}
+  .qr-copy{text-align:center}
+  .badges{justify-content:center}
+  .qr-box{max-width:470px;margin:auto;width:100%;padding:14px}
+  .music{font-size:34px}
+}
+</style>
+</head>
+<body>
+<main class="page">
+  <section class="hero">
+    <div class="music m1">♪</div>
+    <div class="music m2">♫</div>
+    <div class="music m3">♪</div>
+    <div class="crown">♛</div>
+    <h1 class="brand">Hanamist <span>♪</span></h1>
+    <div class="subtitle">Chord Gallery</div>
+  </section>
+
+  <section class="card">
+    <h2 class="title">Silahkan Klik Tombol <span class="blue">Dibawah</span></h2>
+    <p class="desc">Untuk melanjutkan ke Gallery Chord Hanamist, tekan tombol berikut.</p>
+    <a class="btn" href="https://drive.google.com/drive/folders/1M0LPbaBrdA42XP-1SD4_qKcdy6fAj2H7" target="_blank" rel="noopener noreferrer">
+      <span class="hand">☝</span>
+      <span>CLICK HERE →</span>
+    </a>
+  </section>
+
+  <section class="card qr-section">
+    <div class="qr-copy">
+      <h2>Dukung Kreator Melalui<br><span>QRIS di Bawah Ini</span></h2>
+      <p>Scan QRIS menggunakan aplikasi pembayaran yang mendukung QRIS. QR dibuat ulang dari data QR pada gambar yang kamu kirim, dengan area putih penuh agar tidak terpotong dan lebih mudah dipindai.</p>
+      <div class="badges">
+        <div class="badge">✓ QR LENGKAP</div>
+        <div class="badge">⚡ MUDAH DI-SCAN</div>
+        <div class="badge">♫ HANAMIST</div>
+      </div>
+    </div>
+    <div class="qr-box">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABBoAAAQaCAIAAABivowIAAAjHElEQVR4nO3ZW47EyA1FQadR+99yegcDzoVoNqWI74KUL6n7QOfe+x8AAIB/77/TAwAAALaSEwAAQEhOAAAAITkBAACE5AQAABCSEwAAQEhOAAAAITkBAACE5AQAABCSEwAAQEhOAAAAITkBAACE5AQAABCSEwAAQEhOAAAAITkBAACE5AQAABCSEwAAQEhOAAAAITkBAACE5AQAABCSEwAAQEhOAAAAITkBAACE5AQAABCSEwAAQEhOAAAAITkBAACE5AQAABCSEwAAQEhOAAAAITkBAACE5AQAABCSEwAAQEhOAAAAITkBAACE5AQAABCSEwAAQEhOAAAAITkBAACE5AQAABCSEwAAQEhOAAAAITkBAACE5AQAABCSEwAAQEhOAAAAITkBAACE5AQAABCSEwAAQEhOAAAAITkBAACE5AQAABCSEwAAQEhOAAAAITkBAACE5AQAABCSEwAAQEhOAAAAITkBAACE5AQAABCSEwAAQEhOAAAAITkBAACE5AQAABCSEwAAQEhOAAAAITkBAACE5AQAABD6TQ/geeec6SEscO99/JodK98xzg7mXvHlU/e+99L7zmeH+irNnuQv373DlvX0rpuy5f1Z5+sEAAAQkhMAAEBITgAAACE5AQAAhOQEAAAQkhMAAEBITgAAACE5AQAAhOQEAAAQkhMAAEBITgAAACE5AQAAhOQEAAAQ+k0PYNK9d3oIDzvnDN59y3rWV+l9M9pido+2PEez4+zYo9l9nz1L77t73fvetFvW831P3Kz3/S2u83UCAAAIyQkAACAkJwAAgJCcAAAAQnICAAAIyQkAACAkJwAAgJCcAAAAQnICAAAIyQkAACAkJwAAgJCcAAAAQnICAAAI/aYHsMM5Z/Du997Bu9fnbpxTd69fc3aVZp+jLSdkdpXqtpy62ZO8ZZU8HRWzu7lljzps2fcv83UCAAAIyQkAACAkJwAAgJCcAAAAQnICAAAIyQkAACAkJwAAgJCcAAAAQnICAAAIyQkAACAkJwAAgJCcAAAAQnICAAAI/aYHwHucc6aH8LD6jO69g9es6xhnx93rZtezw+w4Z5/i2d388rPJm7zvrcjf5+sEAAAQkhMAAEBITgAAACE5AQAAhOQEAAAQkhMAAEBITgAAACE5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1/k6AQAAhOQEAAAQkhMAAEBITgAAACE5AQAAhOQEAAAQkhMAAEBITgAAACE5AQAAhOQEAAAQkhMAAEBITgAAACE5AQAAhH7TA3jeOaf4y3vv47+s373+y7qOa87q2M2Oa87qmHuH96183ZfPZ4cvn+T33X3LmZ+de4fZE1I3u57vO8kdfJ0AAABCcgIAAAjJCQAAICQnAACAkJwAAABCcgIAAAjJCQAAICQnAACAkJwAAABCcgIAAAjJCQAAICQnAACAkJwAAABC5947PYYFzjnFX9bXs+OaHd43zg4d+z57947dnN2jLezms2afzbrZfd+ym7O2PJt17ztLW9517/vf29cJAAAgJCcAAICQnAAAAEJyAgAACMkJAAAgJCcAAICQnAAAAEJyAgAACMkJAAAgJCcAAICQnAAAAEJyAgAACMkJAAAg9JsewPPOOY9f8977+N07rtlhy9zr19xiyypteeI67l73vnG+74mre9/53PKe77BlnHVbxtnhy3Of5esEAAAQkhMAAEBITgAAACE5AQAAhOQEAAAQkhMAAEBITgAAACE5AQAAhOQEAAAQkhMAAEBITgAAACE5AQAAhOQEAAAQ+k0P4Hn33hV3P+c8fs26+t1nx9mhY0b1a9ZtOSGzq1TnfP79a9a97+6zT8es2T3q8L4ZbVnPLz9Hs3ydAAAAQnICAAAIyQkAACAkJwAAgJCcAAAAQnICAAAIyQkAACAkJwAAgJCcAAAAQnICAAAIyQkAACAkJwAAgJCcAAAAQr/pATzvnDM9hDGzc9+y8vfe4i87ZjR79w71cdbnXtexnrPXrNuy8u/jhEyZfStu2Xe7WbFlN7fwdQIAAAjJCQAAICQnAACAkJwAAABCcgIAAAjJCQAAICQnAACAkJwAAABCcgIAAAjJCQAAICQnAACAkJwAAABCcgIAAAide+/0GB52zin+sj73jmvWzd69rj7OuvfNqG72fL7vmrO+PKMO71ul2ffnlue97svr2cHcK7b8t9bB1wkAACAkJwAAgJCcAAAAQnICAAAIyQkAACAkJwAAgJCcAAAAQnICAAAIyQkAACAkJwAAgJCcAAAAQnICAAAIyQkAACB07r3TYxhzzpkewpj6vtdXafYsvW83O/aoQ8e+z566jru/75p1W942W951Hbbs+xZffuK2zKjD+94Mdb5OAAAAITkBAACE5AQAABCSEwAAQEhOAAAAITkBAACE5AQAABCSEwAAQEhOAAAAITkBAACE5AQAABCSEwAAQEhOAAAAod/0AJ53zin+8t7bOpKnbJlRfZx1szOq371jj7as5/vO55fHOXs+62bvvsXsWdryxHXY8nRsed63+PKZ93UCAAAIyQkAACAkJwAAgJCcAAAAQnICAAAIyQkAACAkJwAAgJCcAAAAQnICAAAIyQkAACAkJwAAgJCcAAAAQnICAAAInXvv9BgWOOdMD+FhW/a9vvJfntGXz2fH3N93luo65v6+cb5vlbbc/csrv2U367489/fxdQIAAAjJCQAAICQnAACAkJwAAABCcgIAAAjJCQAAICQnAACAkJwAAABCcgIAAAjJCQAAICQnAACAkJwAAABCcgIAAAide+/0GB52zpkeQkl95esz6tjNjvWcPXVbTsis2fM5e+Y7bFmlLc/7lqf4y3Ovmz2fdbO7+eV33az3zaiDrxMAAEBITgAAACE5AQAAhOQEAAAQkhMAAEBITgAAACE5AQAAhOQEAAAQkhMAAEBITgAAACE5AQAAhOQEAAAQkhMAAEDoNz2At7n3Fn95znn87h3XrOuY++w16zpW/svr2eF9qzR7zdk32Oyp86Z9ky1z33Lq6t53lra8wTr4OgEAAITkBAAAEJITAABASE4AAAAhOQEAAITkBAAAEJITAABASE4AAAAhOQEAAITkBAAAEJITAABASE4AAAAhOQEAAIR+0wN43r23+MtzTutI/v865r5lPbeMs0N97lvMzqjj6dhy97r3PXEd49zyVpy15e/R7PNe975Vqttylt7H1wkAACAkJwAAgJCcAAAAQnICAAAIyQkAACAkJwAAgJCcAAAAQnICAAAIyQkAACAkJwAAgJCcAAAAQnICAAAIyQkAACB07r3TY3jYOaf4y/rcO67Z4X3jrJvdzdlr1nXsu1M3pWNGHfyVmbpm3Zan431/O+reN/fZN9iX/xp28HUCAAAIyQkAACAkJwAAgJCcAAAAQnICAAAIyQkAACAkJwAAgJCcAAAAQnICAAAIyQkAACAkJwAAgJCcAAAAQnICAAAI/aYHMOmcU/zlvXfF3eu/nJ17xzhn7/6+GW25+xazT1xdx26+701LxZa/Mh3XnP37XtfxTt7yxG0Z5xa+TgAAACE5AQAAhOQEAAAQkhMAAEBITgAA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" alt="QRIS Hanamist Chord Creator">
+      <p class="scan-note">Arahkan kamera / aplikasi QRIS ke kode di atas</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <strong>HANAMIST Chord Gallery</strong><br>
+    Hanamist Chord Creator • Musik, chord, dan talenta
+  </footer>
+</main>
+</body>
+</html>
